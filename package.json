@@ -1,31 +1,36 @@
 {
-  "name": "ptt-scr",
-  "version": "0.0.1",
-  "description": "簡單ＰＴＴ文章列表",
-  "main": "dist/index.js",
-  "scripts": {
-    "test": "mocha --compilers js:babel-core/register test",
-    "build": "babel src -d dist",
-    "prepublish": "npm run build"
-  },
-  "keywords": ["ptt"],
-  "author": "larryyangsen",
-  "license": "MIT",
-  "dependencies": {
-    "x-ray": "^2.3.2",
-    "babel-polyfill": "^6.26.0"
-  },
-  "engines": {
-    "node": ">=8.0.0"
-  },
-  "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.0",
-    "babel-plugin-transform-runtime": "^6.23.0",
-    "babel-preset-es2015": "^6.24.1",
-    "babel-preset-stage-0": "^6.24.1",
-    "babel-register": "^6.26.0",
-    "chai": "^4.1.1",
-    "mocha": "^3.5.0"
-  }
+    "name": "ptt-scr",
+    "version": "0.0.1",
+    "description": "簡單ＰＴＴ文章列表",
+    "main": "dist/index.js",
+    "scripts": {
+        "test": "mocha --compilers js:babel-core/register test",
+        "build": "babel src -d dist",
+        "prepublish": "npm run build"
+    },
+    "keywords": [
+        "ptt"
+    ],
+    "author": "larryyangsen",
+    "license": "MIT",
+    "dependencies": {
+        "x-ray": "^2.3.2",
+        "babel-polyfill": "^6.26.0"
+    },
+    "engines": {
+        "node": ">=8.0.0"
+    },
+    "devDependencies": {
+        "babel-cli": "^6.26.0",
+        "babel-core": "^6.26.0",
+        "babel-eslint": "^7.2.3",
+        "babel-plugin-transform-runtime": "^6.23.0",
+        "babel-preset-es2015": "^6.24.1",
+        "babel-preset-stage-0": "^6.24.1",
+        "babel-register": "^6.26.0",
+        "chai": "^4.1.1",
+        "eslint": "^4.5.0",
+        "eslint-plugin-import": "^2.7.0",
+        "mocha": "^3.5.0"
+    }
 }
