@@ -13,6 +13,7 @@
         "category": "炸裂",
         "link": "https://www.ptt.cc/bbs/Baseball/M.1503121398.A.457.html",
         "athor": "xxxxxx",
+        "push":"1",
         "date": " 8/19"
     }
     {
