@@ -13,7 +13,7 @@ export default async (
     categoryPatten = /\[(.+)\]/
 ) =>
     new Promise((resolve, reject) => {
-        const mainUrl = `https://www.ptt.cc/bbs/${boardName}/index.html`;
+        const mainUrl = `https://webptt.com/m.aspx?n=bbs/${boardName}`;
         const x = xray({
             filters: {
                 category: value => {
