@@ -6,11 +6,13 @@ import scrapList from './scrap-list';
 
 const jar = Request.jar();
 const request = Request.defaults({ jar });
-const list = [];
+const items = [];
 
 /**
  *  @param boardName string
- *  @param pages number
+ *  @param pageCounts number
+ *  @param startPage string
+ *  @param categoryPatten RegExp
  */
 
 export default async (
@@ -27,8 +29,8 @@ export default async (
         const html = await get(request, boardUrl);
         const titleList = await scrapList(html, categoryPatten);
         boardUrl = `${mainUrl}/bbs/${boardName}/index${titleList.prePageNumber}.html`;
-        list.push(...titleList.items);
+        items.push(...titleList.items);
     }
 
-    return { prePage: boardUrl, list };
+    return { prePage: boardUrl, items };
 };
