@@ -4,7 +4,7 @@ export default () => {
     describe('has result', () => {
         it('get gamesale result', async () => {
             const result = await scraper('Gamesale');
-            expect(result).to.not.have.lengthOf(0);
+            expect(result.list).to.not.have.lengthOf(0);
         });
     });
 };

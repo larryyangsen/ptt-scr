@@ -3,21 +3,40 @@
 ## 
 ```js
  const { scraper } = require('ptt-scr');
- scraper('Baseball').then(re => console.log(JSON.stringify(re,null,4)));
+ const list = await scraper('Gossiping');
 
 ```
 ```json
-[
-    {
-        "title": "[炸裂] op 幫刪",
-        "category": "炸裂",
-        "link": "https://www.ptt.cc/bbs/Baseball/M.1503121398.A.457.html",
-        "athor": "xxxxxx",
-        "push":"1",
-        "date": " 8/19"
-    }
-    {
-        "title":"fefef",
-    }
-]
+{
+    "prePage":"https://www.ptt.cc/bbs/Gossiping/index25458.html",
+    "items":[
+         {
+         "title": "[問卦] 如何反串進入紫衣神教?",
+         "category": "問卦",
+         "link": "/bbs/Gossiping/M.1505315229.A.8BC.html",
+         "athor": "xxx",
+         "push": "4",
+         "date": " 9/13"
+      },
+      {
+         "title": "[問卦] 沒人整理的房間像闖空門",
+         "category": "問卦",
+         "link": "/bbs/Gossiping/M.1505315282.A.6CE.html",
+         "athor": "xxx",
+         "push": 0,
+         "date": " 9/13"
+      },
+      {
+         "title": "[問卦] 剛開學就想換指導教授的八卦？",
+         "category": "問卦",
+         "link": "/bbs/Gossiping/M.1505315289.A.C11.html",
+         "athor": "xxx",
+         "push": 0,
+         "date": " 9/13"
+      },{
+          
+      }
+    ]
+}
+
 ```

@@ -9,15 +9,18 @@
         "build": "babel src -d dist",
         "prepublish": "npm run build"
     },
-    "keywords": ["ptt"],
+    "keywords": [
+        "ptt"
+    ],
     "author": "larryyangsen",
     "license": "MIT",
     "dependencies": {
-        "x-ray": "^2.3.2",
-        "babel-polyfill": "^6.26.0"
+        "babel-polyfill": "^6.26.0",
+        "request": "^2.81.0",
+        "x-ray": "^2.3.2"
     },
     "engines": {
-        "node": ">=8.0.0"
+        "node": ">=8.2.0"
     },
     "devDependencies": {
         "babel-cli": "^6.26.0",
@@ -30,6 +33,7 @@
         "chai": "^4.1.1",
         "eslint": "^4.5.0",
         "eslint-plugin-import": "^2.7.0",
+        "eslint-plugin-mocha": "^4.11.0",
         "mocha": "^3.5.0"
     }
 }

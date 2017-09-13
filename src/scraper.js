@@ -1,51 +1,34 @@
 import xray from 'x-ray';
+import Request from 'request';
+import storeSession from './store-session';
+import get from './getUrlContent';
+import scrapList from './scrap-list';
 
-const prePageSelector = '.btn-group-paging a:nth-child(2)@href';
-const listSelector = '.r-ent';
-const titleSelector = '.title a';
-const titleLinkSelector = '.title a@href';
-const authorSelector = '.meta .author';
-const dateSelector = '.meta .date';
-const pushContentSelector = '.nrec';
+const jar = Request.jar();
+const request = Request.defaults({ jar });
+const list = [];
+
+/**
+ *  @param boardName string
+ *  @param pages number
+ */
+
 export default async (
     boardName = 'Gamesale',
-    pages = 3,
+    pageCounts = 3,
+    startPage = '',
     categoryPatten = /\[(.+)\]/
-) =>
-    new Promise((resolve, reject) => {
-        const mainUrl = `https://webptt.com/m.aspx?n=bbs/${boardName}`;
-        const x = xray({
-            filters: {
-                category: value => {
-                    if (value && typeof value === 'string') {
-                        return value.match(categoryPatten)
-                            ? value.match(categoryPatten)[1].trim()
-                            : '標題格式錯誤';
-                    }
-                },
-                pushContent: value => {
-                    if (value) {
-                        return value.trim();
-                    }
-                    return 0;
-                }
-            }
-        });
-        x(mainUrl, listSelector, [
-            {
-                title: titleSelector,
-                category: `${titleSelector}|category`,
-                link: titleLinkSelector,
-                athor: authorSelector,
-                push: `${pushContentSelector}|pushContent`,
-                date: dateSelector
-            }
-        ])
-            .paginate(prePageSelector)
-            .limit(pages)((err, res) => {
-                if (err) {
-                    reject(err);
-                }
-                resolve(res);
-            });
-    });
+) => {
+    const mainUrl = 'https://www.ptt.cc';
+    let boardUrl = `${mainUrl}/bbs/${boardName}/index${startPage}.html`;
+
+    await storeSession(request);
+    for (let i = 0; i < pageCounts; i++) {
+        const html = await get(request, boardUrl);
+        const titleList = await scrapList(html, categoryPatten);
+        boardUrl = `${mainUrl}/bbs/${boardName}/index${titleList.prePageNumber}.html`;
+        list.push(...titleList.items);
+    }
+
+    return { prePage: boardUrl, list };
+};
