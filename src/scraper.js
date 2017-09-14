@@ -9,20 +9,20 @@ const request = Request.defaults({ jar });
 const items = [];
 
 /**
- *  @param boardName string
- *  @param pageCounts number
- *  @param startPage string
- *  @param categoryPatten RegExp
+ *  @param boardName {string}
+ *  @param pageCounts {number} 往前走幾頁 default:3
+ *  @param startPage {number} 開始的頁數  default:''
+ *  @param categoryPatten {RegExp} 發文分類 正則表達式規則 default: /\[(.+)\]/
  */
 
 export default async (
-    boardName = 'Gamesale',
+    boardName = 'Gossiping',
     pageCounts = 3,
-    startPage = '',
+    startPage = 0,
     categoryPatten = /\[(.+)\]/
 ) => {
     const mainUrl = 'https://www.ptt.cc';
-    let boardUrl = `${mainUrl}/bbs/${boardName}/index${startPage}.html`;
+    let boardUrl = `${mainUrl}/bbs/${boardName}/index${startPage || ''}.html`;
 
     await storeSession(request);
     for (let i = 0; i < pageCounts; i++) {

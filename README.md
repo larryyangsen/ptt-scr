@@ -3,8 +3,15 @@
 ## 
 ```js
  const { scraper } = require('ptt-scr');
- const list = await scraper('Gossiping');
+/**
+ *  @param boardName {string} 版名 default: Gossiping
+ *  @param pageCounts {number} 往前走幾頁 default:3
+ *  @param startPage {number} 開始的頁數  default:0||''
+ *  @param categoryPatten {RegExp} 發文分類 正則表達式規則 default: /\[(.+)\]/
+ */
 
+ const list = await scraper(boardName,pageCount,startPage,categoryPatten);
+ 
 ```
 ```json
 {

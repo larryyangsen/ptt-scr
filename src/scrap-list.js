@@ -29,6 +29,12 @@ export default async (html, categoryPatten = /\[(.+)\]/) =>
                         return number;
                     }
                     return 0;
+                },
+                fullLink: value => {
+                    if (value) {
+                        return `https://www.ptt.cc/${value}`;
+                    }
+                    return '';
                 }
             }
         });
@@ -39,7 +45,7 @@ export default async (html, categoryPatten = /\[(.+)\]/) =>
                 {
                     title: titleSelector,
                     category: `${titleSelector}|category`,
-                    link: titleLinkSelector,
+                    link: `${titleLinkSelector}|fullLink`,
                     athor: authorSelector,
                     push: `${pushContentSelector}|pushContent`,
                     date: dateSelector
