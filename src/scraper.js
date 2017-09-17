@@ -1,8 +1,8 @@
-import xray from 'x-ray';
 import Request from 'request';
 import storeSession from './store-session';
 import get from './getUrlContent';
-import scrapList from './scrap-list';
+import scrapList from './list';
+import scrapContent from './content';
 
 const jar = Request.jar();
 const request = Request.defaults({ jar });
@@ -16,10 +16,13 @@ const items = [];
  */
 
 export default async (
-    boardName = 'Gossiping',
-    pageCounts = 3,
-    startPage = 0,
-    categoryPatten = /\[(.+)\]/
+    {
+        boardName = 'Gossiping',
+        pageCounts = 3,
+        startPage = 0,
+        categoryPatten = /\[(.+)\]/,
+        isScrapContent = false
+    } = {}
 ) => {
     const mainUrl = 'https://www.ptt.cc';
     let boardUrl = `${mainUrl}/bbs/${boardName}/index${startPage || ''}.html`;
@@ -27,10 +30,18 @@ export default async (
     await storeSession(request);
     for (let i = 0; i < pageCounts; i++) {
         const html = await get(request, boardUrl);
-        const titleList = await scrapList(html, categoryPatten);
+        const titleList = scrapList(html, categoryPatten);
         boardUrl = `${mainUrl}/bbs/${boardName}/index${titleList.prePageNumber}.html`;
         items.push(...titleList.items);
     }
-
+    if (isScrapContent) {
+        for (const item of items) {
+            if (item.link) {
+                const contentHTML = await get(request, item.link);
+                const content = await scrapContent(contentHTML);
+                Object.assign(item, { content });
+            }
+        }
+    }
     return { prePage: boardUrl, items };
 };

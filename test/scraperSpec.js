@@ -3,7 +3,8 @@ import { expect } from 'chai';
 export default () => {
     describe('has result', () => {
         it('get gamesale result', async () => {
-            const result = await scraper('Gamesale');
+            const boardName = 'Gamesale';
+            const result = await scraper({ boardName });
             console.log(result);
             expect(result.items).to.not.have.lengthOf(0);
         });
