@@ -35,13 +35,7 @@ export default async (
         items.push(...titleList.items);
     }
     if (isScrapContent) {
-        for (const item of items) {
-            if (item.link) {
-                const contentHTML = await get(request, item.link);
-                const content = await scrapContent(contentHTML);
-                Object.assign(item, { content });
-            }
-        }
+        await Promise.all(items.map(item => scrapContent(request, item)));
     }
     return { prePage: boardUrl, items };
 };

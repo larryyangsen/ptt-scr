@@ -1,7 +1,7 @@
 {
     "name": "ptt-scr",
-    "version": "1.0.8",
-    "description": "簡單ＰＴＴ文章列表",
+    "version": "1.0.9",
+    "description": "ＰＴＴ文章列表",
     "main": "dist/index.js",
     "repository": "larryyangsen/ptt-scr",
     "scripts": {
