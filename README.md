@@ -17,6 +17,7 @@
 ``` json
 {
     "prePage":"https://www.ptt.cc/bbs/Gossiping/index25458.html",
+    "prePageNumber":25458,
     "items":[
          {
          "title": "[問卦] 123456",
@@ -52,7 +53,7 @@
 ## 取得內容回傳結果
 
 ```json
-    [
+   "items": [
         {
             "title": "[PS4] xxxxx",
             "category": "PS4",

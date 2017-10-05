@@ -14,6 +14,7 @@ const spanF2Selector = 'div#main-content span.f2';
 const contentLinkSelector = 'div#main-content a';
 const ipReg = /(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})/;
 export default async (request, item) => {
+    if (!item.link) { return {}; }
     const html = await get(request, item.link);
     const $ = cheerio.load(html, {
         withDomLvl1: true,
@@ -104,4 +105,5 @@ export default async (request, item) => {
         boo,
         neutral
     });
+    return item;
 };

@@ -7,6 +7,7 @@ import scrapContent from './content';
 const jar = Request.jar();
 const request = Request.defaults({ jar });
 const items = [];
+const mainUrl = 'https://www.ptt.cc';
 
 /**
  *  @param boardName {string}
@@ -24,18 +25,33 @@ export default async (
         isScrapContent = false
     } = {}
 ) => {
-    const mainUrl = 'https://www.ptt.cc';
     let boardUrl = `${mainUrl}/bbs/${boardName}/index${startPage || ''}.html`;
+    let prePageNumber = 0;
 
     await storeSession(request);
     for (let i = 0; i < pageCounts; i++) {
         const html = await get(request, boardUrl);
         const titleList = scrapList(html, categoryPatten);
         boardUrl = `${mainUrl}/bbs/${boardName}/index${titleList.prePageNumber}.html`;
+        prePageNumber = titleList.prePageNumber;
         items.push(...titleList.items);
     }
     if (isScrapContent) {
-        await Promise.all(items.map(item => scrapContent(request, item)));
+        const contentItems = [];
+        const itemsLength = items.length;
+        const batch = itemsLength / pageCounts;
+        console.log(`總共：${itemsLength}`);
+
+        for (let i = 0; i < itemsLength / batch + 1; i++) {
+            const steps = items
+                .splice(0, batch)
+                .map(step => scrapContent(request, step));
+            if (steps.length) {
+                contentItems.push(...(await Promise.all(steps)));
+            }
+            console.log(`剩下：${items.length}`);
+        }
+        return { prePage: boardUrl, prePageNumber, items: contentItems };
     }
-    return { prePage: boardUrl, items };
+    return { prePage: boardUrl, prePageNumber, items };
 };
