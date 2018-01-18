@@ -1,11 +1,9 @@
-import Request from 'request';
+import Request from './request';
 import storeSession from './store-session';
 import get from './getUrlContent';
 import scrapList from './list';
 import scrapContent from './content';
 
-const jar = Request.jar();
-const request = Request.defaults({ jar });
 const items = [];
 const mainUrl = 'https://www.ptt.cc';
 
@@ -16,23 +14,22 @@ const mainUrl = 'https://www.ptt.cc';
  *  @param categoryPatten {RegExp} 發文分類 正則表達式規則 default: /\[(.+)\]/
  */
 
-export default async (
-    {
-        boardName = 'Gossiping',
-        pageCounts = 3,
-        startPage = 0,
-        categoryPatten = /\[(.+)\]/,
-        isScrapContent = false
-    } = {}
-) => {
+export default async ({
+    boardName = 'Gossiping',
+    pageCounts = 3,
+    startPage = 0,
+    categoryPatten = /\[(.+)\]/,
+    isScrapContent = false
+} = {}) => {
     let boardUrl = `${mainUrl}/bbs/${boardName}/index${startPage || ''}.html`;
     let prePageNumber = 0;
-
-    await storeSession(request);
+    const request = await Request();
     for (let i = 0; i < pageCounts; i++) {
         const html = await get(request, boardUrl);
         const titleList = scrapList(html, categoryPatten);
-        boardUrl = `${mainUrl}/bbs/${boardName}/index${titleList.prePageNumber}.html`;
+        boardUrl = `${mainUrl}/bbs/${boardName}/index${
+            titleList.prePageNumber
+        }.html`;
         prePageNumber = titleList.prePageNumber;
         items.push(...titleList.items);
     }
@@ -45,7 +42,7 @@ export default async (
         for (let i = 0; i < itemsLength / batch + 1; i++) {
             const steps = items
                 .splice(0, batch)
-                .map(step => scrapContent(request, step));
+                .map(step => scrapContent(step));
             if (steps.length) {
                 contentItems.push(...(await Promise.all(steps)));
             }

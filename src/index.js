@@ -1,6 +1,6 @@
-import '@babel/polyfill';
+import 'babel-polyfill';
 import scraper from './scraper';
-import content from './content'
+import content from './content';
 export { scraper, content };
 // import fs from 'fs';
 // (async () => {
@@ -9,12 +9,14 @@ export { scraper, content };
 //         startPage: 0,
 //         categoryPatten: /\[(.+)\]/,
 //         boardName: 'Gamesale',
-//         isScrapContent: true
+//         isScrapContent: false
 //     };
 //     console.log(new Date());
 //     const list = await scraper(option);
 //     // console.log(JSON.stringify(list, null,npx 4));
-//     const csv = list.items.reduce((pre, cur) => {
+//     console.log(await content(list.items[0]));
+
+//     const csv = list.items.reduce(async (pre, cur) => {
 //         if (cur.category === '公告' || !cur.title) {
 //             return pre;
 //         }
