@@ -43,6 +43,7 @@ export default async item => {
             }
             return '';
         });
+    const reply = [];
     const push = [];
     const neutral = [];
     const boo = [];
@@ -81,7 +82,7 @@ export default async item => {
         const item = { userid, content };
         ip && Object.assign(item, { ip: ip.join() });
         time && Object.assign(item, { time: time.join() });
-
+        reply.push(item);
         tag === '推' && push.push(item);
         tag === '→' && neutral.push(item);
         tag === '噓' && boo.push(item);
@@ -109,6 +110,7 @@ export default async item => {
             content,
             publishIP,
             editedIP,
+            reply,
             push,
             boo,
             neutral

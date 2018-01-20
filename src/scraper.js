@@ -38,7 +38,7 @@ export default async ({
         const contentItems = [];
         const itemsLength = items.length;
         const batch = itemsLength / pageCounts;
-        console.log(`總共：${itemsLength}`);
+        // console.log(`總共：${itemsLength}`);
 
         for (let i = 0; i < itemsLength / batch + 1; i++) {
             const steps = items
@@ -47,7 +47,7 @@ export default async ({
             if (steps.length) {
                 contentItems.push(...(await Promise.all(steps)));
             }
-            console.log(`剩下：${items.length}`);
+            // console.log(`剩下：${items.length}`);
         }
         return { prePage: boardUrl, prePageNumber, items: contentItems };
     }
