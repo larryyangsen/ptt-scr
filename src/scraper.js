@@ -1,10 +1,9 @@
-import Request from './request';
+import request from './request';
 import storeSession from './store-session';
 import get from './getUrlContent';
 import scrapList from './list';
 import scrapContent from './content';
 
-const items = [];
 const mainUrl = 'https://www.ptt.cc';
 
 /**
@@ -23,9 +22,11 @@ export default async ({
 } = {}) => {
     let boardUrl = `${mainUrl}/bbs/${boardName}/index${startPage || ''}.html`;
     let prePageNumber = 0;
-    const request = await Request();
+    const items = [];
+
+    const session = await request();
     for (let i = 0; i < pageCounts; i++) {
-        const html = await get(request, boardUrl);
+        const html = await get(session, boardUrl);
         const titleList = scrapList(html, categoryPatten);
         boardUrl = `${mainUrl}/bbs/${boardName}/index${
             titleList.prePageNumber

@@ -1,4 +1,4 @@
-import Request from './request';
+import request from './request';
 import cheerio from 'cheerio';
 import moment from 'moment';
 import get from './getUrlContent';
@@ -17,12 +17,11 @@ const spanF2Selector = 'div#main-content span.f2';
 const contentLinkSelector = 'div#main-content a';
 const ipReg = /(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})/;
 export default async item => {
-    console.log(item);
     if (!item.link) {
         return {};
     }
-    const request = await Request();
-    const html = await get(request, item.link);
+    const session = await request();
+    const html = await get(session, item.link);
     const $ = cheerio.load(html, {
         withDomLvl1: true,
         normalizeWhitespace: true,
