@@ -18,8 +18,8 @@ const getCategory = (value, categoryPatten) => {
 const fullLink = value => (value ? `https://www.ptt.cc/${value}` : '');
 const getPrePageNumber = value => {
     if (value) {
-        const [, number] = (/index(\d+).html/).exec(value);
-        return number;
+        const [, number] = (/index(\d+).html/).exec(value)
+        return +number;
     }
     return 0;
 };
