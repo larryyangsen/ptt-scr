@@ -2,7 +2,6 @@ import request from './request';
 import cheerio from 'cheerio';
 import moment from 'moment';
 import get from './getUrlContent';
-import storeSession from './store-session';
 
 const mainContentSelector = 'div#main-content';
 const athorSelector = 'div#main-content .article-metaline:nth-child(1) .article-meta-value';
@@ -13,7 +12,12 @@ const pushSelector = 'div#main-content div.push';
 const spanF2Selector = 'div#main-content span.f2';
 const contentLinkSelector = 'div#main-content a';
 const ipReg = /(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})/;
+const isStr = str => typeof str === 'string';
+const isUrl = str => (/^((https?|ftp|file):\/\/)?([\da-z\\.-]+)\.([a-z\\.]{2,6})([\\/\w \\.-]*)*\/?$/).test(str);
+const initItemLink = item => item && isStr(item) && isUrl(item) && { link: item };
+
 export default async item => {
+    item = Object.assign({}, initItemLink(item));
     if (!item.link) {
         return {};
     }
@@ -76,7 +80,7 @@ export default async item => {
             .match(/(\d{1,2}\/\d{1,2}\s\d{1,2}:\d{1,2})/g);
         // console.log(content);
         // console.log(tag);
-        const item = { tag,userid, content };
+        const item = { tag, userid, content };
         ip && Object.assign(item, { ip: ip.join() });
         time && Object.assign(item, { time: time.join() });
         reply.push(item);
