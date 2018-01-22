@@ -14,7 +14,7 @@ const contentLinkSelector = 'div#main-content a';
 const ipReg = /(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})/;
 const isStr = str => typeof str === 'string';
 const isUrl = str => (/^((https?|ftp|file):\/\/)?([\da-z\\.-]+)\.([a-z\\.]{2,6})([\\/\w \\.-]*)*\/?$/).test(str);
-const initItemLink = item => item && isStr(item) && isUrl(item) && { link: item };
+const initItemLink = item => (isStr(item) ? isUrl(item) && { link: item } : item);
 
 export default async item => {
     item = Object.assign({}, initItemLink(item));
