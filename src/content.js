@@ -5,12 +5,9 @@ import get from './getUrlContent';
 import storeSession from './store-session';
 
 const mainContentSelector = 'div#main-content';
-const athorSelector =
-    'div#main-content .article-metaline:nth-child(1) .article-meta-value';
-const titleSelector =
-    'div#main-content .article-metaline:nth-child(3) .article-meta-value';
-const timeSelector =
-    'div#main-content .article-metaline:nth-child(4) .article-meta-value';
+const athorSelector = 'div#main-content .article-metaline:nth-child(1) .article-meta-value';
+const titleSelector = 'div#main-content .article-metaline:nth-child(3) .article-meta-value';
+const timeSelector = 'div#main-content .article-metaline:nth-child(4) .article-meta-value';
 
 const pushSelector = 'div#main-content div.push';
 const spanF2Selector = 'div#main-content span.f2';
