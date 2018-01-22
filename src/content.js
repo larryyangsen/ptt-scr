@@ -76,7 +76,7 @@ export default async item => {
             .match(/(\d{1,2}\/\d{1,2}\s\d{1,2}:\d{1,2})/g);
         // console.log(content);
         // console.log(tag);
-        const item = { userid, content };
+        const item = { tag,userid, content };
         ip && Object.assign(item, { ip: ip.join() });
         time && Object.assign(item, { time: time.join() });
         reply.push(item);
