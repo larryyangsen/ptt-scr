@@ -4,7 +4,7 @@ import moment from 'moment';
 import get from './getUrlContent';
 
 const mainContentSelector = 'div#main-content';
-const athorSelector = 'div#main-content .article-metaline:nth-child(1) .article-meta-value';
+const authorSelector = 'div#main-content .article-metaline:nth-child(1) .article-meta-value';
 const titleSelector = 'div#main-content .article-metaline:nth-child(3) .article-meta-value';
 const timeSelector = 'div#main-content .article-metaline:nth-child(4) .article-meta-value';
 
@@ -28,7 +28,7 @@ export default async item => {
         normalizeWhitespace: true,
         xmlMode: true
     });
-    const athor = $(athorSelector).text();
+    const author = $(authorSelector).text();
     const title = $(titleSelector).text();
     const datetime = $(timeSelector).text();
     let publishIP = '';
@@ -95,6 +95,21 @@ export default async item => {
         $(el).text() && urls.push($(el).text());
         return urls;
     });
+
+    const quoteFrom = [];
+    $(mainContentSelector)
+        .children('.f2')
+        .each((index, ele) => {
+            quoteFrom.push($(ele).text());
+        });
+
+    const quote = [];
+    $(`${mainContentSelector}`)
+        .children('.f6')
+        .each((index, ele) => {
+            quote.push($(ele).text());
+        });
+
     const content = $(mainContentSelector)
         .children()
         .remove()
@@ -104,10 +119,12 @@ export default async item => {
     item.content = Object.assign(
         {},
         {
-            athor,
+            author,
             title,
             datetime,
             urls,
+            quoteFrom,
+            quote,
             content,
             publishIP,
             editedIP,

@@ -10,9 +10,7 @@ const pushContentSelector = '.nrec';
 const pushContent = value => (value ? value.trim() : '');
 const getCategory = (value, categoryPatten) => {
     if (value && typeof value === 'string') {
-        return value.match(categoryPatten)
-            ? value.match(categoryPatten)[1].trim()
-            : '標題格式錯誤';
+        return value.match(categoryPatten) ? value.match(categoryPatten)[1].trim() : '標題格式錯誤';
     }
 };
 const fullLink = value => (value ? `https://www.ptt.cc/${value}` : '');
@@ -32,14 +30,14 @@ export default (html, categoryPatten = /\[(.+)\]dwdw/, isContent = false) => {
         const title = $(titleSelector).text();
         const category = getCategory(title, categoryPatten);
         const link = fullLink($(titleLinkSelector).attr('href'));
-        const athor = $(authorSelector).text();
+        const author = $(authorSelector).text();
         const push = pushContent($(pushContentSelector).text());
         const date = $(dateSelector).text();
         const item = {
             title,
             category,
             link,
-            athor,
+            author,
             push,
             date
         };
