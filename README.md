@@ -252,7 +252,7 @@
 }
 ```
 
-## 熱門版
+## 熱門看版
 
 ```JavaScript
      const { hot } = require('ptt-scr');
@@ -384,5 +384,28 @@
     {
         ...
     }
+]
+```
+
+## 使用者紀錄
+
+```JavaScript
+     const { user } = require('ptt-scr');
+     console.log(await user('xxx'));
+```
+
+```json
+[
+    {
+        "title": "[問題] xxxxxxxxxxxxxxxxxxx？ - 看板PlayStation - 批 ...",
+        "link": "https://www.ptt.cc/bbs/PlayStation/M.1499496976.A.66F.html",
+        "text": "請問.... xxxxxxxxxxxxxxxxxxx-- ※ 發信站: 批踢踢\n實業坊(ptt.cc), 來自: 42.76.163.95 ※ 文章網址: https://www.ptt.cc/bbs/PlayStation/\nM.1499496976.A.66F.html. 推xxxxx: +1 07/08 15:05. → xxxxx: 為何不？ 07/08 15:12. → xxx: 由7月8日至9日 ..."
+    },
+    {
+        "title": "[閒聊] xxxxxxxxxxxxxx 看板PlayStation - 批踢踢實業坊",
+        "link": "https://www.ptt.cc/bbs/PlayStation/M.1513773122.A.8CD.html",
+        "text": "推xxx: 雙姐妹派的 12/20 21:58. 推xxx: ps4\n中文版 12/20 22:02. 推xxxxxx: 等NS版+1 12/20 22:23. → xxxxx: 3DS跟 12/20 22:41. 推xxxxx: 玩派的… 12\n/20 22:52. 推xxxx: 這麼多！ 12/20 23:25."
+    },
+    {...}
 ]
 ```
