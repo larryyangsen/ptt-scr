@@ -1,6 +1,6 @@
 {
     "name": "ptt-scr",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "description": "ＰＴＴ文章列表",
     "main": "dist/index.js",
     "repository": "larryyangsen/ptt-scr",
@@ -9,30 +9,32 @@
         "build": "babel src -d dist",
         "prepare": "npm run test & npm run build"
     },
-    "keywords": ["ptt"],
+    "keywords": [
+        "ptt"
+    ],
     "author": "larryyangsen",
     "license": "MIT",
     "dependencies": {
         "babel-polyfill": "^6.26.0",
         "cheerio": "^1.0.0-rc.2",
-        "moment": "^2.18.1",
-        "request": "^2.81.0"
+        "moment": "^2.22.1",
+        "request": "^2.85.0"
     },
     "engines": {
         "node": ">=8.2.0"
     },
     "devDependencies": {
         "babel-cli": "^6.26.0",
-        "babel-core": "^6.26.0",
+        "babel-core": "^6.26.3",
         "babel-eslint": "^7.2.3",
         "babel-plugin-transform-runtime": "^6.23.0",
         "babel-preset-env": "^1.6.1",
         "babel-preset-stage-0": "^6.24.1",
         "babel-register": "^6.26.0",
         "chai": "^4.1.1",
-        "eslint": "^4.5.0",
-        "eslint-plugin-import": "^2.7.0",
-        "eslint-plugin-mocha": "^4.11.0",
+        "eslint": "^4.19.1",
+        "eslint-plugin-import": "^2.11.0",
+        "eslint-plugin-mocha": "^4.12.1",
         "mocha": "^3.5.0"
     }
 }
