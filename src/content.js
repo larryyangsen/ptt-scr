@@ -1,6 +1,5 @@
 import request from './request';
 import cheerio from 'cheerio';
-import moment from 'moment';
 import get from './getUrlContent';
 
 const mainContentSelector = 'div#main-content';
