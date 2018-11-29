@@ -2,6 +2,7 @@ module.exports = {
     env: {
         browser: true,
         commonjs: true,
+        jest: true,
         es6: true
     },
     extends: 'eslint:recommended',
@@ -13,9 +14,13 @@ module.exports = {
             classes: true
         }
     },
-    plugins: ['mocha'],
+    plugins: ['jest'],
     rules: {
-        'mocha/no-exclusive-tests': 'error',
+        'jest/no-disabled-tests': 'warn',
+        'jest/no-focused-tests': 'error',
+        'jest/no-identical-title': 'error',
+        'jest/prefer-to-have-length': 'warn',
+        'jest/valid-expect': 'error',
         'accessor-pairs': 'error',
         'array-bracket-spacing': 'error',
         'array-callback-return': 'error',

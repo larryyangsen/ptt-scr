@@ -1,4 +1,13 @@
 {
-    "presets": ["env", "stage-0"],
-    "plugins": ["transform-async-to-generator"]
+    "presets": ["@babel/preset-env"],
+    "env": {
+        "test": {
+            "presets": [["@babel/preset-env"]]
+        }
+    },
+    "plugins": [
+        "@babel/plugin-proposal-object-rest-spread",
+        "@babel/plugin-transform-async-to-generator",
+        "@babel/plugin-transform-runtime"
+    ]
 }
