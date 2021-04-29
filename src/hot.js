@@ -1,6 +1,5 @@
 import cheerio from 'cheerio';
 import request from './request';
-import storeSession from './store-session';
 import get from './getUrlContent';
 
 const url = 'https://www.ptt.cc/bbs/hotboards.html';
