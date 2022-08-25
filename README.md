@@ -1,6 +1,6 @@
 # Ptt
 
-##  文章列表
+## 文章列表
 
 ```JavaScript
  const { scraper } = require('ptt-scr');
@@ -53,7 +53,7 @@
 }
 ```
 
-### 取得標體與內容
+### 取得標題與內容
 
 ```json
    {
