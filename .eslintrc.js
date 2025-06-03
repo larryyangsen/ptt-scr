@@ -5,16 +5,21 @@ module.exports = {
         jest: true,
         es6: true
     },
-    extends: 'eslint:recommended',
-    parser: 'babel-eslint',
+    extends: [
+        'eslint:recommended',
+        'plugin:@typescript-eslint/recommended',
+        'plugin:import/typescript'
+    ],
+    parser: '@typescript-eslint/parser',
     parserOptions: {
-        ecmaVersion: 7,
-        sourceType: 'module',
-        ecmaFeatures: {
-            classes: true
+        sourceType: 'module'
+    },
+    plugins: ['jest', '@typescript-eslint'],
+    settings: {
+        'import/resolver': {
+            typescript: {}
         }
     },
-    plugins: ['jest'],
     rules: {
         'jest/no-disabled-tests': 'warn',
         'jest/no-focused-tests': 'error',
